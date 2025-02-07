@@ -1,1 +1,153 @@
-<p>Este es mis primeras impresiones en git pages </p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenida Mejorada</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #0c1421;
+            color: #f4f4f4;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            width: 120px;
+            margin-right: 10px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .header span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff9800;
+            animation: fadeIn 2.5s ease-out;
+        }
+
+        @keyframes pulsar {
+            0%, 100% {
+                transform: scale(1); /* Tamaño normal */
+            }
+            50% {
+                transform: scale(1.2); /* Crecimiento */
+            }
+        }
+
+        .text-container {
+            font-size: 1.8rem;
+            font-weight: bold;
+            width: 80%;
+            line-height: 1.5;
+            animation: pulsar 3s infinite;
+        }
+
+        .text-container span {
+            color: #ff9800;
+            font-weight: bold;
+        }
+
+        .graphics {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            z-index: -1;
+        }
+
+        .graphics span {
+            font-size: 3rem;
+            position: absolute;
+            opacity: 0.7;
+        }
+
+        .btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            background-color: #4285F4;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.5s ease;
+            animation: fadeIn 4s ease-out;
+        }
+
+        .btn:hover {
+            background-color: #357ae8;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="Imagenes/20años.png" alt="M. motivo de mis pasos" class="logo">
+        <span>20 te acompañen</span>
+    </div>
+
+    <div class="text-container">
+        ¡Hola, <span>Micaela</span>! Qué alegría tenerte aquí. Echa un vistazo a todo lo que he preparado para ti.
+    </div>
+
+    <div class="graphics">
+        <!-- Geometric shapes -->
+        <span class="symbol floating" style="color: #ff5733; left: 5%; top: 10%;">▲</span> <!-- Triangle -->
+        <span class="symbol floating" style="color: #33ff57; right: 10%; top: 20%;">■</span> <!-- Square -->
+        <span class="symbol floating" style="color: #5733ff; left: 15%; bottom: 30%;">●</span> <!-- Circle -->
+        <span class="symbol floating" style="color: #f4d03f; right: 20%; bottom: 40%;">◆</span> <!-- Diamond -->
+
+        <!-- Math symbols -->
+        <span class="symbol" style="color: #f94c66; left: 25%; top: 5%;">&#43;</span>
+        <span class="symbol" style="color: #5dade2; right: 30%; top: 15%;">&#8722;</span>
+        <span class="symbol" style="color: #58d68d; left: 35%; bottom: 20%;">&#215;</span>
+        <span class="symbol" style="color: #f4d03f; right: 40%; bottom: 25%;">&#247;</span>
+        <span class="symbol" style="color: #c39bd3; left: 45%; top: 8%;">&#61;</span>
+        <span class="symbol" style="color: #d98880; right: 50%; top: 12%;">&#60;</span>
+        <span class="symbol" style="color: #5d6d7e; left: 55%; bottom: 15%;">&#62;</span>
+        <span class="symbol" style="color: #85c1e9; right: 60%; bottom: 35%;">&#177;</span>
+    </div>
+
+    <button class="btn" onclick="redirect()">Continuar</button>
+    <script>
+        function redirect() {
+            window.location.href = "Cumple.html";
+        }
+    </script>
+
+</body>
+</html>
