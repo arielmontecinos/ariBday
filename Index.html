@@ -24,6 +24,13 @@
             padding: 10px;
         }
         .hidden { display: none; }
+        .text-container {
+            border: 10px solid transparent ;
+            padding: 20px;
+            max-width: 50%;
+            text-align: center;
+        }
+        
         .header {
             display: flex;
             align-items: center;
@@ -46,15 +53,19 @@
         }
         
         .text-container {
-            font-size: 1.5rem;
-            font-weight: bold;
-            width: 100%;
-            max-width: 600px;
-            text-align: center;
-            line-height: 1.5;
-            animation: heartbeat 3s infinite;
             margin-top: 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            width: 100%;  /* Se ajusta al contenedor padre */
+            max-width: 500px; /* Limita el ancho máximo */
+            text-align: center;
+            line-height: 1.4;
+            animation: heartbeat 2.5s infinite;
+            overflow: hidden; /* Evita que el contenido sobresalga */
+            word-wrap: break-word; /* Asegura que el texto se ajuste */
+            white-space: normal; /* Permite el salto de línea */
         }
+
         .text-container span {
             color: #ff9800;
             font-weight: bold;
@@ -70,13 +81,15 @@
             padding: 12px 30px;
             background-color: #4285F4;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             color: white;
             font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
             transition: background 0.5s ease;
             animation: fadeIn 4s ease-out;
+
+            box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
         }
         .btn:hover {
             background-color: #357ae8;
@@ -87,12 +100,23 @@
             height: auto;
             display: block;
             margin: 20px auto;
+            
         }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        @keyframes soft-blink {
+            0%, 100% { opacity: 1; }  /* Mantiene la opacidad total */
+            50% { opacity: 0.5; }  /* Reduce un poco la opacidad sin desaparecer */
+        }
+
+        #pagina2 {
+            animation: soft-blink 4s infinite ease-in-out; /* Parpadeo lento y natural */
+        }
+
 
         /* Canvas de fuegos artificiales */
         canvas {
@@ -104,6 +128,108 @@
             pointer-events: none;
         }
         
+        /* Contenedor de gráficos en el fondo */
+        .graphics {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            pointer-events: none; /* No afecta la interacción con otros elementos */
+            z-index: -1; /* Se mantiene en el fondo */
+            display: flex;
+            flex-wrap: wrap; /* Permite que los elementos se acomoden automáticamente */
+            justify-content: space-around; /* Distribuye los elementos uniformemente */
+            align-items: center; /* Centra los elementos verticalmente */
+            padding: 5%;
+        }
+
+        /* Estilo base de los símbolos */
+        .symbol {
+            position: absolute;
+            font-size: 4rem;
+            font-weight: bold;
+            opacity: 0.4;
+        }
+
+        /* Distribución aleatoria */
+        .symbol:nth-child(odd) {
+            left: calc(10% + 80% * random());
+            top: calc(10% + 80% * random());
+        }
+
+        .symbol:nth-child(even) {
+            right: calc(10% + 80% * random());
+            bottom: calc(10% + 80% * random());
+        }
+
+        /* Animación de palpitación */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 0.5;
+            }
+        }
+
+        .floating {
+            animation: pulse 3s infinite ease-in-out; /* Latido suave */
+        }
+
+        /* Página 3 animada */
+/* Oculta la página por defecto */
+/* Página 3 animada */
+
+.hidden {
+  display: none;
+}
+
+.pagina3texto {
+  /* Letras más grandes */
+  font-size: 1.3em;
+
+  /* Para que la animación se vea al momento de quitar la clase hidden */
+  opacity: 0;
+  transform: translateY(30px);
+
+  /* Ejecutamos dos animaciones en secuencia:
+     1) "aparecerTexto": Duración 1.2s, se mantiene al finalizar (forwards).
+     2) "parpadeoDorado": Empieza luego de 1.2s, dura 2s y se repite infinitamente
+        con easing "ease-in-out" para una transición suave.
+  */
+  animation: 
+    aparecerTexto 1.2s ease forwards,
+    parpadeoDorado 2s infinite ease-in-out 1.2s;
+}
+
+/* Fade + deslizar hacia arriba */
+@keyframes aparecerTexto {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Parpadeo en dorado de forma suave */
+@keyframes parpadeoDorado {
+  0%, 100% {
+    color: #FFD700;  /* Dorado */
+    opacity: 1;
+  }
+  50% {
+    color: #FFD700;
+    opacity: 0.5;    /* Mitad de opacidad para un parpadeo suave */
+  }
+}
+
     </style>
 </head>
 <body>
@@ -113,40 +239,97 @@
     </audio>
 
     <div id="pagina1">
+        <div class="graphics">
+            <!-- Geometric shapes -->
+            <span class="symbol floating" style="color: #ff5733; left: 5%; top: 10%;">▲</span> <!-- Triangle -->
+            <span class="symbol floating" style="color: #33ff57; right: 10%; top: 20%;">■</span> <!-- Square -->
+            <span class="symbol floating" style="color: #5733ff; left: 15%; bottom: 30%;">●</span> <!-- Circle -->
+            <span class="symbol floating" style="color: #f4d03f; right: 20%; bottom: 40%;">◆</span> <!-- Diamond -->
+    
+            <!-- Math symbols -->
+            <span class="symbol" style="color: #f94c66; left: 25%; top: 5%;">&#43;</span>
+            <span class="symbol" style="color: #5dade2; right: 30%; top: 15%;">&#8722;</span>
+            <span class="symbol" style="color: #58d68d; left: 35%; bottom: 20%;">&#215;</span>
+            <span class="symbol" style="color: #f4d03f; right: 40%; bottom: 25%;">&#247;</span>
+            <span class="symbol" style="color: #c39bd3; left: 45%; top: 8%;">&#61;</span>
+            <span class="symbol" style="color: #d98880; right: 50%; top: 12%;">&#60;</span>
+            <span class="symbol" style="color: #5d6d7e; left: 55%; bottom: 15%;">&#62;</span>
+            <span class="symbol" style="color: #85c1e9; right: 60%; bottom: 35%;">&#177;</span>
+        </div>
         <div class="header">
             <img src="Imagenes/20años.png" alt="M. motivo de mis pasos" class="logo">
-            <span>20 te acompañen</span>
+            <span>¡Tu aventura comienza!</span>
         </div>
         <div class="text-container">
             ¡Hola, <span>Micaela</span>! Qué alegría tenerte aquí. Echa un vistazo a todo lo que he preparado para ti.
+            
         </div>
-        <button class="btn" onclick="mostrarSegundaPagina()">Continuar 1</button>
+        <button class="btn" onclick="mostrarSegundaPagina()">Click me</button>
+        
     </div>
     
     <div id="pagina2" class="hidden">
         <canvas id="fireworksCanvas"></canvas>
         <img class="cumple" src="Imagenes/Cumple.png" alt="Cumple">
         <h2 id="typedText"></h2>
-        <button class="btn">Continuar 2</button>
+        <button class="btn" onclick="mostrarTerceraPagina()">Continuar</button>
+    </div>
+
+    <div id="pagina3" class="hidden">
+        <p class="pagina3texto">
+            Vi que esta era una de tus canciones favoritas y significa mucho para mí. Me dije que algún día la cantaría, pero parecía estar muy lejos. Tú me importas, y supe que podía hacerlo. Me gusta la canción y quiero compartir ese momento contigo
+        </p>
+        <iframe width="355" height="315" src="https://www.youtube.com/embed/RXpe-kbDJE8?si=M1HCOjPF8eKrdLwk" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+
+        <button class="btn" onclick="Volver()">Volver</button>
     </div>
     
     <script>
         function mostrarSegundaPagina() {
+            // Ocultamos la página 1
             document.getElementById('pagina1').classList.add('hidden');
+            
+            // Mostramos la página 2
             document.getElementById('pagina2').classList.remove('hidden');
+            
+            // Limpiar el texto antes de escribir
+            document.getElementById('typedText').textContent = '';
+            
             reproducirMusica();
             escribirTexto();
             iniciarFuegosArtificiales();
         }
-
+        
+        function mostrarTerceraPagina() {
+            // Ocultamos la página 2
+            document.getElementById('pagina2').classList.add('hidden');
+            
+            // Pausar la música para que no suene fuera de la página 2
+            let audio = document.getElementById("birthdaySong");
+            audio.pause();
+            // audio.currentTime = 0; // Descomenta si quieres que se reinicie al volver
+    
+            // Mostramos la página 3
+            document.getElementById('pagina3').classList.remove('hidden');
+        }
+    
+        // --- Aquí la modificación solicitada: recargar la página ---
+        function Volver() {
+            window.location.reload();
+        }
+    
         function reproducirMusica() {
             let audio = document.getElementById("birthdaySong");
             audio.play().catch(error => console.log("Error al reproducir música: ", error));
         }
-
+    
         function escribirTexto() {
-            const text = '🎁 "¡Feliz cumpleaños, Micaela! 🎈 Hoy es tu día y quise hacerte algo especial y diferente. Es un detalle virtual, pero hecho con mucho cariño. ¡Espero que te encante y lo disfrutes un montón!"';
+            const text = '¡Feliz cumpleaños, Micaela! 🎉🥰 Hoy es un día súper especial porque celebramos a una persona increíble: ¡tú! Hice este detalle virtual con mucho cariño y espero que te saque una sonrisa. Desde que te vi, supe que eras mucho más. Ariel te ha admirado desde entonces. ✨';
             const typedTextElement = document.getElementById('typedText');
+    
+            // Asegurarse de empezar sin texto
+            typedTextElement.textContent = "";
+    
             let index = 0;
             function typeWriter() {
                 if (index < text.length) {
@@ -155,17 +338,17 @@
                     setTimeout(typeWriter, 75);
                 }
             }
-            typeWriter();
+            typeWriter(); 
         }
-
+    
         function iniciarFuegosArtificiales() {
             const canvas = document.getElementById('fireworksCanvas');
             const ctx = canvas.getContext('2d');
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-
+    
             let particles = [];
-
+    
             function createFirework(x, y) {
                 const numParticles = 30;
                 for (let i = 0; i < numParticles; i++) {
@@ -180,7 +363,7 @@
                     });
                 }
             }
-
+    
             function updateFireworks() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 for (let i = 0; i < particles.length; i++) {
@@ -198,20 +381,22 @@
                     }
                 }
             }
-
+    
             function loop() {
                 updateFireworks();
                 requestAnimationFrame(loop);
             }
-
+    
             setInterval(() => {
                 const x = Math.random() * canvas.width;
-                const y = Math.random() * canvas.height / 2;
+                const y = Math.random() * (canvas.height / 2);
                 createFirework(x, y);
             }, 500);
-
+    
             loop();
         }
     </script>
+    
+    
 </body>
 </html>
