@@ -11,7 +11,6 @@
             box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
-
         body {
             background: #0c1421;
             color: #f4f4f4;
@@ -21,133 +20,198 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            overflow: hidden;
+            padding: 10px;
         }
-
+        .hidden { display: none; }
         .header {
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
+            flex-wrap: wrap;
+            text-align: center;
         }
-
         .header img {
-            width: 120px;
+            width: 100px;
+            max-width: 25%;
             margin-right: 10px;
             animation: fadeIn 2s ease-out;
         }
-
         .header span {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: bold;
             color: #ff9800;
             animation: fadeIn 2.5s ease-out;
         }
-
-        @keyframes pulsar {
-            0%, 100% {
-                transform: scale(1); /* Tamaño normal */
-            }
-            50% {
-                transform: scale(1.2); /* Crecimiento */
-            }
-        }
-
+        
         .text-container {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: bold;
-            width: 80%;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
             line-height: 1.5;
-            animation: pulsar 3s infinite;
+            animation: heartbeat 3s infinite;
+            margin-top: 20px;
         }
-
         .text-container span {
             color: #ff9800;
             font-weight: bold;
+            display: inline-block;
         }
-
-        .graphics {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            align-items: center;
-            z-index: -1;
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
-
-        .graphics span {
-            font-size: 3rem;
-            position: absolute;
-            opacity: 0.7;
-        }
-
         .btn {
             margin-top: 30px;
-            padding: 15px 40px;
+            padding: 12px 30px;
             background-color: #4285F4;
             border: none;
             border-radius: 5px;
             color: white;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
             transition: background 0.5s ease;
             animation: fadeIn 4s ease-out;
         }
-
         .btn:hover {
             background-color: #357ae8;
         }
+        .cumple {
+            width: 300px;
+            max-width: 80%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Canvas de fuegos artificiales */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
     </style>
 </head>
 <body>
+    <audio id="birthdaySong" loop>
+        <source src="https://dl.dropbox.com/s/e93f5kxsmtankf3/Best%20Happy%20Birthday%20To%20You%20_%20Happy%20Birthday%20Songs%20Remix%202020%28M4A_128K%29_1.m4a?dl=0" type="audio/mp4">
+        Tu navegador no soporta audio.
+    </audio>
 
-    <div class="header">
-        <img src="Imagenes/20años.png" alt="M. motivo de mis pasos" class="logo">
-        <span>20 te acompañen</span>
+    <div id="pagina1">
+        <div class="header">
+            <img src="Imagenes/20años.png" alt="M. motivo de mis pasos" class="logo">
+            <span>20 te acompañen</span>
+        </div>
+        <div class="text-container">
+            ¡Hola, <span>Micaela</span>! Qué alegría tenerte aquí. Echa un vistazo a todo lo que he preparado para ti.
+        </div>
+        <button class="btn" onclick="mostrarSegundaPagina()">Continuar 1</button>
     </div>
-
-    <div class="text-container">
-        ¡Hola, <span>Micaela</span>! Qué alegría tenerte aquí. Echa un vistazo a todo lo que he preparado para ti.
+    
+    <div id="pagina2" class="hidden">
+        <canvas id="fireworksCanvas"></canvas>
+        <img class="cumple" src="Imagenes/Cumple.png" alt="Cumple">
+        <h2 id="typedText"></h2>
+        <button class="btn">Continuar 2</button>
     </div>
-
-    <div class="graphics">
-        <!-- Geometric shapes -->
-        <span class="symbol floating" style="color: #ff5733; left: 5%; top: 10%;">▲</span> <!-- Triangle -->
-        <span class="symbol floating" style="color: #33ff57; right: 10%; top: 20%;">■</span> <!-- Square -->
-        <span class="symbol floating" style="color: #5733ff; left: 15%; bottom: 30%;">●</span> <!-- Circle -->
-        <span class="symbol floating" style="color: #f4d03f; right: 20%; bottom: 40%;">◆</span> <!-- Diamond -->
-
-        <!-- Math symbols -->
-        <span class="symbol" style="color: #f94c66; left: 25%; top: 5%;">&#43;</span>
-        <span class="symbol" style="color: #5dade2; right: 30%; top: 15%;">&#8722;</span>
-        <span class="symbol" style="color: #58d68d; left: 35%; bottom: 20%;">&#215;</span>
-        <span class="symbol" style="color: #f4d03f; right: 40%; bottom: 25%;">&#247;</span>
-        <span class="symbol" style="color: #c39bd3; left: 45%; top: 8%;">&#61;</span>
-        <span class="symbol" style="color: #d98880; right: 50%; top: 12%;">&#60;</span>
-        <span class="symbol" style="color: #5d6d7e; left: 55%; bottom: 15%;">&#62;</span>
-        <span class="symbol" style="color: #85c1e9; right: 60%; bottom: 35%;">&#177;</span>
-    </div>
-
-    <button class="btn" onclick="redirect()">Continuar</button>
+    
     <script>
-        function redirect() {
-            window.location.href = "Cumple.html";
+        function mostrarSegundaPagina() {
+            document.getElementById('pagina1').classList.add('hidden');
+            document.getElementById('pagina2').classList.remove('hidden');
+            reproducirMusica();
+            escribirTexto();
+            iniciarFuegosArtificiales();
+        }
+
+        function reproducirMusica() {
+            let audio = document.getElementById("birthdaySong");
+            audio.play().catch(error => console.log("Error al reproducir música: ", error));
+        }
+
+        function escribirTexto() {
+            const text = '🎁 "¡Feliz cumpleaños, Micaela! 🎈 Hoy es tu día y quise hacerte algo especial y diferente. Es un detalle virtual, pero hecho con mucho cariño. ¡Espero que te encante y lo disfrutes un montón!"';
+            const typedTextElement = document.getElementById('typedText');
+            let index = 0;
+            function typeWriter() {
+                if (index < text.length) {
+                    typedTextElement.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, 75);
+                }
+            }
+            typeWriter();
+        }
+
+        function iniciarFuegosArtificiales() {
+            const canvas = document.getElementById('fireworksCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            let particles = [];
+
+            function createFirework(x, y) {
+                const numParticles = 30;
+                for (let i = 0; i < numParticles; i++) {
+                    particles.push({
+                        x,
+                        y,
+                        size: Math.random() * 3 + 1,
+                        speedX: (Math.random() - 0.5) * 4,
+                        speedY: (Math.random() - 0.5) * 4,
+                        color: `hsl(${Math.random() * 360}, 100%, 60%)`,
+                        life: 50
+                    });
+                }
+            }
+
+            function updateFireworks() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < particles.length; i++) {
+                    const p = particles[i];
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    p.life--;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.fill();
+                    if (p.life <= 0) {
+                        particles.splice(i, 1);
+                        i--;
+                    }
+                }
+            }
+
+            function loop() {
+                updateFireworks();
+                requestAnimationFrame(loop);
+            }
+
+            setInterval(() => {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height / 2;
+                createFirework(x, y);
+            }, 500);
+
+            loop();
         }
     </script>
-
 </body>
 </html>
