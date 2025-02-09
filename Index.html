@@ -444,14 +444,21 @@
         }
     
         function mostrarTerceraPagina() {
-            document.getElementById('pagina2').classList.add('hidden');
-            document.getElementById('pagina3').classList.remove('hidden');
-            if (!canvas.dataset.fireworksStarted) {
-                iniciarEstrellasCayendo();
-                canvas.dataset.fireworksStarted = true;
-            }
+        document.getElementById('pagina2').classList.add('hidden');
+        document.getElementById('pagina3').classList.remove('hidden');
+        detenerMusica(); // Detiene la música al continuar
+        if (!canvas.dataset.fireworksStarted) {
+            iniciarEstrellasCayendo();
+            canvas.dataset.fireworksStarted = true;
         }
-    
+        }
+
+        function detenerMusica() {
+            let audio = document.getElementById("birthdaySong");
+            audio.pause();
+            audio.currentTime = 0; // Reinicia la canción en caso de que se quiera volver a reproducir después
+        }
+        
         function Volver() {
             window.location.reload();
         }
