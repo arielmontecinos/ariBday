@@ -5,232 +5,299 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenida al proyecto ariBday</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        body {
-            background: #0c1421;
-            color: #f4f4f4;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            overflow: hidden;
-            padding: 10px;
-        }
-        .hidden { display: none; }
-        .text-container {
-            border: 10px solid transparent ;
-            padding: 20px;
-            max-width: 50%;
-            text-align: center;
-        }
-        
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            text-align: center;
-        }
-        .header img {
-            width: 100px;
-            max-width: 25%;
-            margin-right: 10px;
-            animation: fadeIn 2s ease-out;
-        }
-        .header span {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #ff9800;
-            animation: fadeIn 2.5s ease-out;
-        }
-        
-        .text-container {
-            margin-top: 20px;
-            font-size: 1.8rem;
-            font-weight: bold;
-            width: 100%;  /* Se ajusta al contenedor padre */
-            max-width: 500px; /* Limita el ancho máximo */
-            text-align: center;
-            line-height: 1.4;
-            animation: heartbeat 2.5s infinite;
-            overflow: hidden; /* Evita que el contenido sobresalga */
-            word-wrap: break-word; /* Asegura que el texto se ajuste */
-            white-space: normal; /* Permite el salto de línea */
-        }
 
-        .text-container span {
-            color: #ff9800;
-            font-weight: bold;
-            display: inline-block;
-        }
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-        .btn {
-            margin-top: 30px;
-            padding: 12px 30px;
-            background-color: #4285F4;
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.5s ease;
-            animation: fadeIn 4s ease-out;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
 
-            box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        .btn:hover {
-            background-color: #357ae8;
-        }
-        .cumple {
-            width: 300px;
-            max-width: 80%;
-            height: auto;
-            display: block;
-            margin: 20px auto;
-            
-        }
+    body {
+        background: #0c1421;
+        color: #f4f4f4;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh; /* Usar min-height en lugar de height para evitar problemas en móviles */
+        overflow: hidden;
+        padding: 10px;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+    .hidden { 
+        display: none; 
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    .header img {
+        width: 100px;
+        max-width: 25%;
+        margin-right: 10px;
+        animation: fadeIn 2s ease-out;
+    }
+
+    .header span {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #ff9800;
+        animation: fadeIn 2.5s ease-out;
+    }
+
+    .text-container {
+        border: 10px solid transparent ;
+        padding: 20px;
+        max-width: 50%;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 1.8rem;
+        font-weight: bold;
+        width: 100%;
+        max-width: 500px; /* Limita el ancho máximo en escritorio */
+        line-height: 1.4;
+        animation: heartbeat 2.5s infinite;
+        overflow: hidden;
+        word-wrap: break-word;
+        white-space: normal;
+    }
+
+    .text-container span {
+        color: #ff9800;
+        font-weight: bold;
+        display: inline-block;
+    }
+
+    #typedText {
+    border: 10px solid transparent;
+    padding: 20px;
+    max-width: 50%;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    width: 100%;
+    max-width: 900px; /* Limita el ancho máximo en escritorio */
+    line-height: 1.4;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: normal;
+    }
+
+    .resaltar {
+    color: #ff9800;
+    font-weight: bold;
+    /* Aplica la animación indefinidamente */
+    animation: pulsar 1.5s infinite;
+    }
+
+    /* Definición de la animación con keyframes */
+    @keyframes pulsar {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+        opacity: 0.7;         /* Disminuye un poco la opacidad para dar efecto */
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    }
+
+    @keyframes heartbeat {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes pulsarColor {
+  0% {
+    background-color: #1445ad; /* Color inicial */
+  }
+  50% {
+    background-color: #226dce; /* Un tono ligeramente más oscuro */
+  }
+  100% {
+    background-color: #0b3f94; /* Regresa al color inicial */
+  }
+}
+
+/* Aplica la animación al botón */
+.btn {
+  margin-top: 30px;
+  padding: 12px 30px;
+  background-color: #4285F4;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  animation: pulsarColor 2s infinite ease-in-out;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+    .btn:hover {
+        background-color: #072f70;
+    }
+
+    .cumple {
+        width: 300px;
+        max-width: 80%;
+        height: auto;
+        display: block;
+        margin: 20px auto;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes soft-blink {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: 0.5; }
+    }
+
+    #pagina2 {
+    animation: soft-border 4s infinite ease-in-out;
+    }
+
+    /* Canvas de fuegos artificiales */
+    canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    /* Contenedor de gráficos en el fondo */
+    .graphics {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: -1;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        padding: 5%;
+    }
+
+    /* Estilo base de los símbolos */
+    .symbol {
+        position: absolute;
+        font-size: 4rem;
+        font-weight: bold;
+        opacity: 0.4;
+    }
+
+    /* Distribución aleatoria (idea; depende del uso de JavaScript para "random()") */
+    .symbol:nth-child(odd) {
+        left: calc(10% + 80% * random());
+        top: calc(10% + 80% * random());
+    }
+
+    .symbol:nth-child(even) {
+        right: calc(10% + 80% * random());
+        bottom: calc(10% + 80% * random());
+    }
+
+    /* Animación de palpitación */
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 1;
         }
-
-        @keyframes soft-blink {
-            0%, 100% { opacity: 1; }  /* Mantiene la opacidad total */
-            50% { opacity: 0.5; }  /* Reduce un poco la opacidad sin desaparecer */
+        50% {
+            transform: scale(1.3);
+            opacity: 0.5;
         }
+    }
 
-        #pagina2 {
-            animation: soft-blink 4s infinite ease-in-out; /* Parpadeo lento y natural */
-        }
+    .floating {
+        animation: pulse 3s infinite ease-in-out;
+    }
 
+    /* Página 3 animada ---------------------------*/
+    /* Contenedor principal de la página 3 */
+#pagina3 {
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 900px;
+  /* border: 2px solid #e0e0e0; */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
 
-        /* Canvas de fuegos artificiales */
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-        
-        /* Contenedor de gráficos en el fondo */
-        .graphics {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            pointer-events: none; /* No afecta la interacción con otros elementos */
-            z-index: -1; /* Se mantiene en el fondo */
-            display: flex;
-            flex-wrap: wrap; /* Permite que los elementos se acomoden automáticamente */
-            justify-content: space-around; /* Distribuye los elementos uniformemente */
-            align-items: center; /* Centra los elementos verticalmente */
-            padding: 5%;
-        }
-
-        /* Estilo base de los símbolos */
-        .symbol {
-            position: absolute;
-            font-size: 4rem;
-            font-weight: bold;
-            opacity: 0.4;
-        }
-
-        /* Distribución aleatoria */
-        .symbol:nth-child(odd) {
-            left: calc(10% + 80% * random());
-            top: calc(10% + 80% * random());
-        }
-
-        .symbol:nth-child(even) {
-            right: calc(10% + 80% * random());
-            bottom: calc(10% + 80% * random());
-        }
-
-        /* Animación de palpitación */
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.3);
-                opacity: 0.5;
-            }
-        }
-
-        .floating {
-            animation: pulse 3s infinite ease-in-out; /* Latido suave */
-        }
-
-        /* Página 3 animada */
-/* Oculta la página por defecto */
-/* Página 3 animada */
-
+/* Clase para ocultar elementos inicialmente */
 .hidden {
   display: none;
 }
 
+/* Estilo para el párrafo principal */
 .pagina3texto {
-  /* Letras más grandes */
-  font-size: 1.3em;
-
-  /* Para que la animación se vea al momento de quitar la clase hidden */
-  opacity: 0;
-  transform: translateY(30px);
-
-  /* Ejecutamos dos animaciones en secuencia:
-     1) "aparecerTexto": Duración 1.2s, se mantiene al finalizar (forwards).
-     2) "parpadeoDorado": Empieza luego de 1.2s, dura 2s y se repite infinitamente
-        con easing "ease-in-out" para una transición suave.
-  */
-  animation: 
-    aparecerTexto 1.2s ease forwards,
-    parpadeoDorado 2s infinite ease-in-out 1.2s;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.2em;
+  line-height: 1.5;
+  color: #f1da55;
+  margin-bottom: 20px;
 }
 
-/* Fade + deslizar hacia arriba */
-@keyframes aparecerTexto {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Estilo para resaltar texto */
+.resaltar {
+  color: #ff9800;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
 }
 
-/* Parpadeo en dorado de forma suave */
-@keyframes parpadeoDorado {
-  0%, 100% {
-    color: #FFD700;  /* Dorado */
-    opacity: 1;
-  }
-  50% {
-    color: #FFD700;
-    opacity: 0.5;    /* Mitad de opacidad para un parpadeo suave */
-  }
+.resaltar:hover {
+  color: #e65100;
 }
 
+/* Estilo para el iframe (video de YouTube) */
+#pagina3 iframe {
+  width: 100%;
+  max-width: 755px;
+  height: auto;
+  aspect-ratio: 16 / 9; /* Para mantener la relación de aspecto */
+  border: none;
+  margin: 20px 0;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/*------------------------*/
+    /* Lienzo de fondo para las estrellas */
+    canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1; /* Detrás de todo el contenido */
+    }
     </style>
+
 </head>
 <body>
     <audio id="birthdaySong" loop>
@@ -242,8 +309,8 @@
         <div class="graphics">
             <!-- Geometric shapes -->
             <span class="symbol floating" style="color: #ff5733; left: 5%; top: 10%;">▲</span> <!-- Triangle -->
-            <span class="symbol floating" style="color: #33ff57; right: 10%; top: 20%;">■</span> <!-- Square -->
             <span class="symbol floating" style="color: #5733ff; left: 15%; bottom: 30%;">●</span> <!-- Circle -->
+            <span class="symbol floating" style="color: #33ff57; right: 10%; top: 20%;">■</span> <!-- Square -->
             <span class="symbol floating" style="color: #f4d03f; right: 20%; bottom: 40%;">◆</span> <!-- Diamond -->
     
             <!-- Math symbols -->
@@ -258,7 +325,7 @@
         </div>
         <div class="header">
             <img src="Imagenes/20años.png" alt="M. motivo de mis pasos" class="logo">
-            <span>¡Tu aventura comienza!</span>
+            <span class="resaltar">¡La aventura inicia!</span>
         </div>
         <div class="text-container">
             ¡Hola, <span>Micaela</span>! Qué alegría tenerte aquí. Echa un vistazo a todo lo que he preparado para ti.
@@ -277,51 +344,108 @@
 
     <div id="pagina3" class="hidden">
         <p class="pagina3texto">
-            Vi que esta era una de tus canciones favoritas y significa mucho para mí. Me dije que algún día la cantaría, pero parecía estar muy lejos. Tú me importas, y supe que podía hacerlo. Me gusta la canción y quiero compartir ese momento contigo
+            Vi que esta era una de tus canciones favoritas y <span class="resaltar">significa mucho para mí</span>. Me dije que algún día la cantaría, pero parecía estar muy lejos. <span class="resaltar">Tú me importas, y supe que podía hacerlo.</span> Me gusta la canción y quiero compartir ese momento contigo
+            <p><iframe 
+                src="https://www.youtube.com/embed/fzvrIAto7jM"
+                frameborder="0" 
+                allow="autoplay; encrypted-media" 
+                allowfullscreen>
+                </iframe>
+            </p>
+            <button class="btn" onclick="Volver()">Volver</button>
         </p>
-        
-        <iframe 
-        width="355" 
-        height="315" 
-        src="https://www.youtube.com/embed/fzvrIAto7jM"
-        frameborder="0" 
-        allow="autoplay; encrypted-media" 
-        allowfullscreen>
-        </iframe>
-
-        <button class="btn" onclick="Volver()">Volver</button>
+        <canvas id="fireworksCanvas"></canvas>
     </div>
-    
+
     <script>
+        // Inicializamos variables globales una sola vez
+        const canvas = document.getElementById("fireworksCanvas");
+        const ctx = canvas.getContext("2d");
+        let particles = [];
+    
+        // Ajusta el tamaño del canvas al tamaño de la ventana
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    
+        // Función para crear partículas (pueden ser fuegos artificiales o estrellas)
+        function createParticle(x, y, type = 'firework') {
+            const speed = type === 'firework' ? 4 : (Math.random() * 2 + 2);
+            const numParticles = type === 'firework' ? 30 : 1;
+    
+            for (let i = 0; i < numParticles; i++) {
+                particles.push({
+                    x,
+                    y,
+                    size: Math.random() * 3 + 1,
+                    speedX: (Math.random() - 0.5) * speed,
+                    speedY: type === 'firework' ? (Math.random() - 0.5) * speed : speed,
+                    color: `hsl(${Math.random() * 360}, 100%, 60%)`,
+                    life: type === 'firework' ? 50 : 100
+                });
+            }
+        }
+    
+        // Actualiza y dibuja las partículas
+        function updateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                p.x += p.speedX;
+                p.y += p.speedY;
+                p.life--;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+                if (p.life <= 0) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+    
+        // Bucle principal de animación
+        function loop() {
+            updateParticles();
+            requestAnimationFrame(loop);
+        }
+    
+        // Dispara partículas cuando se llama
+        function iniciarFuegosArtificiales() {
+            setInterval(() => {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * (canvas.height / 2);
+                createParticle(x, y, 'firework');
+            }, 500);
+        }
+    
+        // Genera estrellas cayendo
+        function iniciarEstrellasCayendo() {
+            setInterval(() => {
+                const x = Math.random() * canvas.width;
+                createParticle(x, 0, 'star');
+            }, 200);
+        }
+    
+        // Funciones para mostrar las diferentes páginas
         function mostrarSegundaPagina() {
-            // Ocultamos la página 1
             document.getElementById('pagina1').classList.add('hidden');
-            
-            // Mostramos la página 2
             document.getElementById('pagina2').classList.remove('hidden');
-            
-            // Limpiar el texto antes de escribir
             document.getElementById('typedText').textContent = '';
-            
             reproducirMusica();
             escribirTexto();
             iniciarFuegosArtificiales();
         }
-        
-        function mostrarTerceraPagina() {
-            // Ocultamos la página 2
-            document.getElementById('pagina2').classList.add('hidden');
-            
-            // Pausar la música para que no suene fuera de la página 2
-            let audio = document.getElementById("birthdaySong");
-            audio.pause();
-            // audio.currentTime = 0; // Descomenta si quieres que se reinicie al volver
     
-            // Mostramos la página 3
+        function mostrarTerceraPagina() {
+            document.getElementById('pagina2').classList.add('hidden');
             document.getElementById('pagina3').classList.remove('hidden');
+            if (!canvas.dataset.fireworksStarted) {
+                iniciarEstrellasCayendo();
+                canvas.dataset.fireworksStarted = true;
+            }
         }
     
-        // --- Aquí la modificación solicitada: recargar la página ---
         function Volver() {
             window.location.reload();
         }
@@ -334,8 +458,6 @@
         function escribirTexto() {
             const text = '¡Feliz cumpleaños, Micaela! 🎉🥰 Hoy es un día súper especial porque celebramos a una persona increíble: ¡tú! Hice este detalle virtual con mucho cariño y espero que te saque una sonrisa. Desde que te vi, supe que eras mucho más. Ariel te ha admirado desde entonces. ✨';
             const typedTextElement = document.getElementById('typedText');
-    
-            // Asegurarse de empezar sin texto
             typedTextElement.textContent = "";
     
             let index = 0;
@@ -344,65 +466,20 @@
                     typedTextElement.textContent += text.charAt(index);
                     index++;
                     setTimeout(typeWriter, 75);
+                } else {
+                    const contenidoFinal = typedTextElement.textContent;
+                    const nuevoContenido = contenidoFinal
+                        .replace('¡tú!', '<span class="resaltar">¡tú!</span>')
+                        .replace('¡Feliz cumpleaños, Micaela!', '<span class="resaltar">¡Feliz cumpleaños, Micaela!</span>')
+                        .replace('Ariel te ha admirado desde entonces.', '<span class="resaltar">Ariel te ha admirado desde entonces.</span>');
+                    typedTextElement.innerHTML = nuevoContenido;
                 }
             }
-            typeWriter(); 
+            typeWriter();
         }
     
-        function iniciarFuegosArtificiales() {
-            const canvas = document.getElementById('fireworksCanvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-    
-            let particles = [];
-    
-            function createFirework(x, y) {
-                const numParticles = 30;
-                for (let i = 0; i < numParticles; i++) {
-                    particles.push({
-                        x,
-                        y,
-                        size: Math.random() * 3 + 1,
-                        speedX: (Math.random() - 0.5) * 4,
-                        speedY: (Math.random() - 0.5) * 4,
-                        color: `hsl(${Math.random() * 360}, 100%, 60%)`,
-                        life: 50
-                    });
-                }
-            }
-    
-            function updateFireworks() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                for (let i = 0; i < particles.length; i++) {
-                    const p = particles[i];
-                    p.x += p.speedX;
-                    p.y += p.speedY;
-                    p.life--;
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                    ctx.fillStyle = p.color;
-                    ctx.fill();
-                    if (p.life <= 0) {
-                        particles.splice(i, 1);
-                        i--;
-                    }
-                }
-            }
-    
-            function loop() {
-                updateFireworks();
-                requestAnimationFrame(loop);
-            }
-    
-            setInterval(() => {
-                const x = Math.random() * canvas.width;
-                const y = Math.random() * (canvas.height / 2);
-                createFirework(x, y);
-            }, 500);
-    
-            loop();
-        }
+        // Comienza el bucle de animación
+        loop();
     </script>
     
     
